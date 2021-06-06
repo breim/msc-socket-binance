@@ -12,7 +12,7 @@ def db_connection():
   return conn
 
 def insert_alert(alert):
-  sql = "INSERT INTO alerts (symbol, amount, quote_volume, price_change_percent, created_at) VALUES(%s, %s, %s, %s, %s::timestamp)"
+  sql = "INSERT INTO alerts (symbol, amount, quote_volume, price_change_percent, event_type, created_at) VALUES(%s, %s, %s, %s, %s, %s::timestamp)"
   conn = None
   try:
       conn = db_connection()
@@ -41,6 +41,7 @@ def create_tables():
           amount DECIMAL(20,2) NOT NULL,
           quote_volume DECIMAL(20,2) NOT NULL,
           price_change_percent DECIMAL(5,2) NOT NULL,
+          event_type VARCHAR(50) NOT NULL,
           created_at TIMESTAMP NOT NULL
         )
     """

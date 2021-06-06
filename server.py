@@ -28,7 +28,6 @@ async def socket():
         quote_volume =  "{:.2f}".format(float(response['quoteVolume']))
         amount = "{:.2f}".format(float(data['volume']) * float(response['lastPrice']))
 
-        insert_alert([data['baseAsset'], amount, quote_volume, price_change_percent, datetime.now(timezone.utc)])
+        insert_alert([data['baseAsset'], amount, quote_volume, price_change_percent, data['eventType'], datetime.now(timezone.utc)])
 
 asyncio.get_event_loop().run_until_complete(socket())
-
